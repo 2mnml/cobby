@@ -6,35 +6,39 @@
     <title>CobbyBoard</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #f5f5dc;
-            flex-direction: column;
-        }
-        .button-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr)); /* Dynamic grid based on screen width */
-            gap: 2vw; /* Responsive gap between buttons */
-            justify-content: center;
-            width: 90vw; /* Make the container responsive */
-            max-width: 500px; /* Prevent it from getting too wide on large screens */
-        }
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: #f5f5dc;
+}
 
-        .button {
-            aspect-ratio: 1 / 1; /* Ensures buttons stay square */
-             width: 100%; /* Button width adapts to the grid */
-            border: none;
-            font-size: 2vw; /* Scale text with viewport width */
-            cursor: pointer;
-            border-radius: 50%;
-            background-size: cover;
-            background-position: center;
-        }
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25%, 1fr)); /* Adjust columns for different screens */
+    grid-template-rows: repeat(auto-fit, minmax(25%, 1fr)); /* Ensures proper scaling */
+    gap: 2vw;
+    width: 90vw; /* Keep width within viewport */
+    height: 90vh; /* Ensure container fits within the viewport */
+    max-width: 500px; /* Prevent it from getting too wide */
+    max-height: 500px; /* Prevent it from overflowing */
+}
+
+.button {
+    aspect-ratio: 1 / 1; /* Ensures buttons stay square */
+    width: 100%; /* Button width adapts to the grid */
+    border: none;
+    font-size: 2vw;
+    cursor: pointer;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
         .button:nth-child(1) { background-image: url('buttons/r-blue.png'); }
         .button:nth-child(2) { background-image: url('buttons/r-red.png'); }
         .button:nth-child(3) { background-image: url('buttons/r-grass.png'); }
