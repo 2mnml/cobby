@@ -19,18 +19,18 @@
 
 .button-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(25%, 1fr)); /* Adjust columns for different screens */
-    grid-template-rows: repeat(auto-fit, minmax(25%, 1fr)); /* Ensures proper scaling */
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-rows: repeat(4, 1fr); /* 4 rows */
     gap: 2vw;
-    width: 90vw; /* Keep width within viewport */
-    height: 90vh; /* Ensure container fits within the viewport */
-    max-width: 500px; /* Prevent it from getting too wide */
-    max-height: 500px; /* Prevent it from overflowing */
+    width: 90vw;  /* Responsive width */
+    height: 90vh; /* Ensures it fills most of the screen */
+    max-width: 400px; /* Prevents it from becoming too wide */
+    max-height: 600px; /* Prevents it from overflowing */
 }
 
 .button {
-    aspect-ratio: 1 / 1; /* Ensures buttons stay square */
-    width: 100%; /* Button width adapts to the grid */
+    aspect-ratio: 1 / 1; /* Ensures buttons remain square */
+    width: 100%; /* Make sure buttons fit within the grid */
     border: none;
     font-size: 2vw;
     cursor: pointer;
