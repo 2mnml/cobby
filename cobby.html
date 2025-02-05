@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soundboard</title>
+    <title>CobbyBoard</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,22 +24,39 @@
             font-size: 16px;
             cursor: pointer;
             border-radius: 50%;
-            color: white;
+            background-size: cover;
+            background-position: center;
         }
-        .button:nth-child(1) { background: #ff5733; }
-        .button:nth-child(2) { background: #33ff57; }
-        .button:nth-child(3) { background: #3357ff; }
+        .button:nth-child(1) { background-image: url('buttons/r-blue.png'); }
+        .button:nth-child(2) { background-image: url('buttons/r-red.png'); }
+        .button:nth-child(3) { background-image: url('buttons/r-grass.png'); }
+        .button:nth-child(4) { background-image: url('buttons/r-purple.png'); }
+        .button:nth-child(5) { background-image: url('buttons/r-orange.png'); }
+        .button:nth-child(6) { background-image: url('buttons/r-cyan.png'); }
+        .button:nth-child(7) { background-image: url('buttons/r-yellow.png'); }
+        .button:nth-child(8) { background-image: url('buttons/r-brown.png'); }
+
     </style>
 </head>
 <body>
-    <button class="button" onclick="playSound('sound1.mp3')">1</button>
-    <button class="button" onclick="playSound('sound2.mp3')">2</button>
-    <button class="button" onclick="playSound('sound3.mp3')">3</button>
+    <button class="button" id="btn1" onclick="playSound(this, 'sounds/ilovemusic.mp3', 'buttons/p-blue.png', 'buttons/r-blue.png')"></button>
+    <button class="button" id="btn2" onclick="playSound(this, 'sounds/groovin.mp3', 'buttons/p-red.png', 'buttons/r-red.png')"></button>
+    <button class="button" id="btn3" onclick="playSound(this, 'sounds/joker.mp3', 'buttons/p-grass.png', 'buttons/r-grass.png')"></button>
+    <button class="button" id="btn4" onclick="playSound(this, 'sounds/baby.mp3', 'buttons/p-purple.png', 'buttons/r-purple.png')"></button>
+    <button class="button" id="btn5" onclick="playSound(this, 'sounds/come.mp3', 'buttons/p-orange.png', 'buttons/r-orange.png')"></button>
+    <button class="button" id="btn6" onclick="playSound(this, 'sounds/badass.mp3', 'buttons/p-cyan.png', 'buttons/r-cyan.png')"></button>
+    <button class="button" id="btn7" onclick="playSound(this, 'sounds/joker.mp3', 'buttons/p-yellow.png', 'buttons/r-yellow.png')"></button>
+    <button class="button" id="btn8" onclick="playSound(this, 'sounds/joker.mp3', 'buttons/p-brown.png', 'buttons/r-brown.png')"></button>
 
     <script>
-        function playSound(soundFile) {
+        function playSound(button, soundFile, activeImage, defaultImage) {
             let audio = new Audio(soundFile);
+            button.style.backgroundImage = `url(${activeImage})`;
+            
             audio.play();
+            audio.onended = function() {
+                button.style.backgroundImage = `url(${defaultImage})`;
+            };
         }
     </script>
 </body>
