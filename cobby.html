@@ -16,11 +16,16 @@
             background: #f5f5dc;
             flex-direction: column;
         }
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(2, 80px); /* 4 buttons per row */
+            gap: 10px;
+            justify-content: center;
+        }
         .button {
             width: 80px;
             height: 80px;
             border: none;
-            margin: 10px;
             font-size: 16px;
             cursor: pointer;
             border-radius: 50%;
@@ -39,23 +44,40 @@
     </style>
 </head>
 <body>
-    <button class="button" id="btn1" onclick="playSound(this, 'sounds/ilovemusic.mp3', 'buttons/p-blue.png', 'buttons/r-blue.png')"></button>
-    <button class="button" id="btn2" onclick="playSound(this, 'sounds/groovin.mp3', 'buttons/p-red.png', 'buttons/r-red.png')"></button>
-    <button class="button" id="btn3" onclick="playSound(this, 'sounds/joker.mp3', 'buttons/p-grass.png', 'buttons/r-grass.png')"></button>
-    <button class="button" id="btn4" onclick="playSound(this, 'sounds/baby.mp3', 'buttons/p-purple.png', 'buttons/r-purple.png')"></button>
-    <button class="button" id="btn5" onclick="playSound(this, 'sounds/come.mp3', 'buttons/p-orange.png', 'buttons/r-orange.png')"></button>
-    <button class="button" id="btn6" onclick="playSound(this, 'sounds/badass.mp3', 'buttons/p-cyan.png', 'buttons/r-cyan.png')"></button>
-    <button class="button" id="btn7" onclick="playSound(this, 'sounds/joker.mp3', 'buttons/p-yellow.png', 'buttons/r-yellow.png')"></button>
-    <button class="button" id="btn8" onclick="playSound(this, 'sounds/joker.mp3', 'buttons/p-brown.png', 'buttons/r-brown.png')"></button>
+    <div class="button-container">
+        <button class="button" id="btn1" onclick="playSound(this, 'sounds/ilovemusic.mp3', 'buttons/p-blue.png', 'buttons/r-blue.png')"></button>
+        <button class="button" id="btn2" onclick="playSound(this, 'sounds/groovin.mp3', 'buttons/p-red.png', 'buttons/r-red.png')"></button>
+        <button class="button" id="btn3" onclick="playSound(this, 'sounds/joker.mp3', 'buttons/p-grass.png', 'buttons/r-grass.png')"></button>
+        <button class="button" id="btn4" onclick="playSound(this, 'sounds/baby.mp3', 'buttons/p-purple.png', 'buttons/r-purple.png')"></button>
+        <button class="button" id="btn5" onclick="playSound(this, 'sounds/come.mp3', 'buttons/p-orange.png', 'buttons/r-orange.png')"></button>
+        <button class="button" id="btn6" onclick="playSound(this, 'sounds/badass.mp3', 'buttons/p-cyan.png', 'buttons/r-cyan.png')"></button>
+        <button class="button" id="btn7" onclick="playSound(this, 'sounds/shimp.mp3', 'buttons/p-yellow.png', 'buttons/r-yellow.png')"></button>
+        <button class="button" id="btn8" onclick="playSound(this, 'sounds/tump.mp3', 'buttons/p-brown.png', 'buttons/r-brown.png')"></button>
+    </div>
 
     <script>
+        let currentAudio = null;
+        let currentButton = null;
+
         function playSound(button, soundFile, activeImage, defaultImage) {
-            let audio = new Audio(soundFile);
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                if (currentButton) {
+                    currentButton.style.backgroundImage = `url(${currentButton.dataset.defaultImage})`;
+                }
+            }
+            
+            currentAudio = new Audio(soundFile);
+            currentButton = button;
+            button.dataset.defaultImage = defaultImage;
             button.style.backgroundImage = `url(${activeImage})`;
             
-            audio.play();
-            audio.onended = function() {
+            currentAudio.play();
+            currentAudio.onended = function() {
                 button.style.backgroundImage = `url(${defaultImage})`;
+                currentButton = null;
+                currentAudio = null;
             };
         }
     </script>
